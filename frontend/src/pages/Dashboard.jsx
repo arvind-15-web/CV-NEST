@@ -71,7 +71,8 @@ function Dashboard() {
 
   const saveToCloud = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/resumes', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const res = await fetch(`${apiUrl}/resumes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(resumeData)
