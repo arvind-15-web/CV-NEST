@@ -101,8 +101,25 @@ const EditorPane = ({ activeTab, resumeData, updateResumeData }) => {
                   <InputField label="Job Title" value={exp.position} onChange={(e) => updateItem('experience', exp.id, 'position', e.target.value)} placeholder="e.g. Product Manager" />
                   <InputField label="Start Date" value={exp.startDate} onChange={(e) => updateItem('experience', exp.id, 'startDate', e.target.value)} placeholder="MM/YYYY" />
                   <InputField label="End Date" value={exp.endDate} onChange={(e) => updateItem('experience', exp.id, 'endDate', e.target.value)} placeholder="Present" />
-                  <div className="md:col-span-2">
-                    <InputField type="textarea" label="Description" value={exp.description} onChange={(e) => updateItem('experience', exp.id, 'description', e.target.value)} rows="4" placeholder="Key responsibilities and achievements..." />
+                  <div className="md:col-span-2 space-y-1.5">
+                    <label className="text-[13px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Description</label>
+                    <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-800">
+                      <div className="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-2 flex gap-1">
+                        <button className="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-slate-600 dark:text-slate-300 font-serif font-bold w-8 h-8 flex items-center justify-center">B</button>
+                        <button className="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-slate-600 dark:text-slate-300 font-serif italic w-8 h-8 flex items-center justify-center">I</button>
+                        <button className="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-slate-600 dark:text-slate-300 font-serif underline w-8 h-8 flex items-center justify-center">U</button>
+                        <div className="w-px h-5 bg-slate-300 dark:bg-slate-600 my-auto mx-1"></div>
+                        <button className="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-slate-600 dark:text-slate-300 font-bold w-8 h-8 flex items-center justify-center">⋮¯</button>
+                        <button className="p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded text-slate-600 dark:text-slate-300 font-bold w-8 h-8 flex items-center justify-center">½¯</button>
+                      </div>
+                      <textarea 
+                        value={exp.description} 
+                        onChange={(e) => updateItem('experience', exp.id, 'description', e.target.value)} 
+                        rows="4" 
+                        placeholder="Key responsibilities and achievements..."
+                        className="w-full p-4 bg-transparent focus:outline-none resize-none text-slate-800 dark:text-slate-100 placeholder:text-slate-400"
+                      />
+                    </div>
                   </div>
                 </div>
               </motion.div>

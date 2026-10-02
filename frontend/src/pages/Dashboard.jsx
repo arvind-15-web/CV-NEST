@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useReactToPrint } from 'react-to-print';
 import EditorPane from '../components/EditorPane';
 import PreviewPane from '../components/PreviewPane';
+import DesignPane from '../components/DesignPane';
 import { 
   FileText, Download, User, Briefcase, GraduationCap, 
   Settings, Cloud, Eye, Menu, Wrench, Home, LogOut,
-  Globe, BookOpen, Star, Folder
+  Globe, BookOpen, Star, Folder, Palette
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -52,7 +53,13 @@ function Dashboard() {
     certifications: [],
     workshops: [],
     projects: [],
-    template: 'modern'
+    template: 'modern',
+    design: {
+      font: 'sans',
+      color: 'blue',
+      layout: 'modern',
+      headingStyle: 'solid'
+    }
   });
 
   const componentRef = useRef();
@@ -94,6 +101,7 @@ function Dashboard() {
     { id: 'certifications', label: 'Courses & Certifications', icon: BookOpen },
     { id: 'workshops', label: 'Workshops & Seminars', icon: Star },
     { id: 'projects', label: 'Academic Projects', icon: Folder },
+    { id: 'design', label: 'Design & Theme', icon: Palette },
   ];
 
   return (
@@ -173,11 +181,18 @@ function Dashboard() {
               transition={{ duration: 0.2 }}
               className="max-w-2xl mx-auto"
             >
-              <EditorPane 
-                activeTab={activeTab} 
-                resumeData={resumeData} 
-                updateResumeData={updateResumeData} 
-              />
+              {activeTab === 'design' ? (
+                <DesignPane 
+                  resumeData={resumeData} 
+                  updateResumeData={updateResumeData} 
+                />
+              ) : (
+                <EditorPane 
+                  activeTab={activeTab} 
+                  resumeData={resumeData} 
+                  updateResumeData={updateResumeData} 
+                />
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -198,8 +213,9 @@ function Dashboard() {
               onChange={(e) => updateResumeData('template', e.target.value)}
               className="bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-2 font-medium"
             >
-              <option value="modern">Modern Template</option>
-              <option value="classic">Classic Template</option>
+              <option value="modern">Modern Layout</option>
+              <option value="classic">Classic Layout</option>
+              <option value="minimal">Minimal Layout</option>
             </select>
             <button 
               onClick={handlePrint}
