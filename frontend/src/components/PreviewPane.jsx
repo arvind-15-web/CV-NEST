@@ -88,7 +88,13 @@ const getThemeStyles = (design) => {
   const fontMap = {
     sans: 'font-sans',
     serif: 'font-serif',
-    mono: 'font-mono'
+    mono: 'font-mono',
+    inter: 'font-inter',
+    lato: 'font-lato',
+    montserrat: 'font-montserrat',
+    oswald: 'font-oswald',
+    playfair: 'font-playfair',
+    poppins: 'font-poppins'
   };
   return { 
     cMap: colorMap[design.color] || colorMap.blue, 
@@ -437,6 +443,79 @@ const ExecutiveTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }
 };
 
 
+const CompactTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) => {
+  const { personalInfo } = resumeData;
+  return (
+    <div className={fontClass}>
+      <motion.header variants={itemVariants} className={`flex justify-between items-center border-b-2 ${cMap.border} pb-4 mb-6`}>
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900">{personalInfo.fullName}</h1>
+        <div className={`text-right text-xs font-medium space-x-3 ${cMap.text}`}>
+          <span>{personalInfo.email}</span>
+          <span>{personalInfo.phone}</span>
+          <span>{personalInfo.location}</span>
+        </div>
+      </motion.header>
+      <ClassicTemplate resumeData={{...resumeData, personalInfo: {}}} design={design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />
+    </div>
+  );
+};
+
+const ElegantTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) => {
+  const { personalInfo } = resumeData;
+  return (
+    <div className={fontClass}>
+      <motion.header variants={itemVariants} className={`text-center border-double border-b-8 ${cMap.border} pb-8 mb-10`}>
+        <h1 className="text-5xl font-serif italic tracking-wide text-slate-900 mb-3">{personalInfo.fullName}</h1>
+        <div className={`text-lg font-serif tracking-widest ${cMap.lightText} mb-4`}>{personalInfo.title}</div>
+        <div className={`flex justify-center gap-6 text-sm font-medium ${cMap.text} uppercase tracking-widest`}>
+          <span>{personalInfo.email}</span>
+          <span>{personalInfo.phone}</span>
+        </div>
+      </motion.header>
+      <ClassicTemplate resumeData={{...resumeData, personalInfo: {}}} design={design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />
+    </div>
+  );
+};
+
+const BoldTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) => {
+  const { personalInfo } = resumeData;
+  return (
+    <div className={fontClass}>
+      <motion.header variants={itemVariants} className={`${cMap.bg} ${cMap.border} border-l-8 p-10 mb-10`}>
+        <h1 className="text-6xl font-black tracking-tighter text-slate-900 mb-2 uppercase">{personalInfo.fullName}</h1>
+        <div className={`text-2xl font-bold ${cMap.text} mb-6 uppercase tracking-tight`}>{personalInfo.title}</div>
+        <div className={`grid grid-cols-2 gap-4 text-sm font-bold ${cMap.lightText}`}>
+          <div>{personalInfo.email}</div>
+          <div>{personalInfo.phone}</div>
+          <div>{personalInfo.location}</div>
+          <div>{personalInfo.portfolio}</div>
+        </div>
+      </motion.header>
+      <ModernTemplate resumeData={{...resumeData, personalInfo: {}}} design={design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />
+    </div>
+  );
+};
+
+const TimelineTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) => {
+  const { personalInfo } = resumeData;
+  return (
+    <div className={fontClass}>
+      <motion.header variants={itemVariants} className="mb-12">
+        <h1 className={`text-5xl font-bold tracking-tight mb-2 ${cMap.text}`}>{personalInfo.fullName}</h1>
+        <div className="text-xl font-medium text-slate-500 mb-4">{personalInfo.title}</div>
+        <div className="flex gap-4 text-sm text-slate-600 font-medium border-l-4 pl-4 border-slate-200">
+          <div>{personalInfo.email}</div>
+          <div>{personalInfo.phone}</div>
+          <div>{personalInfo.location}</div>
+        </div>
+      </motion.header>
+      <div className={`border-l-2 ${cMap.border} pl-8 ml-2 space-y-12`}>
+         <ModernTemplate resumeData={{...resumeData, personalInfo: {}}} design={design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />
+      </div>
+    </div>
+  );
+};
+
 const PreviewPane = ({ resumeData }) => {
   const containerVariants = {
     hidden: { opacity: 0, scale: 0.95, y: 20 },
@@ -472,6 +551,10 @@ const PreviewPane = ({ resumeData }) => {
       {resumeData.template === 'professional' && <ProfessionalTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
       {resumeData.template === 'creative' && <CreativeTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
       {resumeData.template === 'executive' && <ExecutiveTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
+      {resumeData.template === 'compact' && <CompactTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
+      {resumeData.template === 'elegant' && <ElegantTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
+      {resumeData.template === 'bold' && <BoldTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
+      {resumeData.template === 'timeline' && <TimelineTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
     </motion.div>
   );
 };

@@ -219,6 +219,10 @@ function Dashboard() {
               <option value="professional">Professional Layout</option>
               <option value="creative">Creative Layout</option>
               <option value="executive">Executive Layout</option>
+              <option value="compact">Compact Layout</option>
+              <option value="elegant">Elegant Layout</option>
+              <option value="bold">Bold Layout</option>
+              <option value="timeline">Timeline Layout</option>
             </select>
             <button 
               onClick={handlePrint}
