@@ -216,6 +216,9 @@ function Dashboard() {
               <option value="modern">Modern Layout</option>
               <option value="classic">Classic Layout</option>
               <option value="minimal">Minimal Layout</option>
+              <option value="professional">Professional Layout</option>
+              <option value="creative">Creative Layout</option>
+              <option value="executive">Executive Layout</option>
             </select>
             <button 
               onClick={handlePrint}

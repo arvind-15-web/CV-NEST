@@ -355,6 +355,88 @@ const MinimalTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) 
 };
 
 
+const CreativeTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) => {
+  const { personalInfo, experience, education, skills, languages, certifications, workshops, projects } = resumeData;
+  return (
+    <div className={fontClass}>
+      <motion.header variants={itemVariants} className={`-mt-12 -mx-12 p-12 mb-8 ${cMap.bg}`}>
+        <h1 className={`text-5xl font-bold tracking-tight mb-2 ${cMap.text}`}>
+          {personalInfo.fullName || 'Your Name'}
+        </h1>
+        <div className={`text-xl font-medium mb-6 tracking-wide ${cMap.lightText}`}>
+          {personalInfo.title || 'Professional Title'}
+        </div>
+        <div className={`flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium ${cMap.text} opacity-80`}>
+          <ContactItem icon={Mail} text={personalInfo.email} />
+          <ContactItem icon={Phone} text={personalInfo.phone} />
+          <ContactItem icon={MapPin} text={personalInfo.location} />
+          <ContactItem icon={LinkIcon} text={personalInfo.portfolio} />
+          <ContactItem icon={LinkedinIcon} text={personalInfo.linkedin} />
+          <ContactItem icon={GithubIcon} text={personalInfo.github} />
+        </div>
+      </motion.header>
+      <div className="px-2">
+        {personalInfo.summary && (
+          <motion.section variants={itemVariants} layout className="mb-10">
+            <SectionHeading title="Executive Summary" design={design} cMap={cMap} />
+            <p className="text-slate-700 leading-relaxed text-[15px] whitespace-pre-wrap">{personalInfo.summary}</p>
+          </motion.section>
+        )}
+        {/* Reuse structure from ModernTemplate for the rest, simplified for brevity */}
+        <ModernTemplate resumeData={{...resumeData, personalInfo: {}}} design={design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />
+      </div>
+    </div>
+  );
+};
+
+const ProfessionalTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) => {
+  const { personalInfo, experience, education, skills, languages, certifications, workshops, projects } = resumeData;
+  return (
+    <div className={fontClass}>
+      <motion.header variants={itemVariants} className={`border-t-[16px] ${cMap.border} pt-8 pb-6 mb-8 flex justify-between items-end`}>
+        <div>
+          <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-1">
+            {personalInfo.fullName || 'Your Name'}
+          </h1>
+          <div className={`text-lg font-bold uppercase tracking-widest ${cMap.lightText}`}>
+            {personalInfo.title || 'Professional Title'}
+          </div>
+        </div>
+        <div className="text-right text-sm font-medium text-slate-600 space-y-1">
+          <div>{personalInfo.email}</div>
+          <div>{personalInfo.phone}</div>
+          <div>{personalInfo.location}</div>
+          <div className={`font-bold ${cMap.text}`}>{personalInfo.portfolio}</div>
+        </div>
+      </motion.header>
+      {/* Rest relies on standard layout */}
+      <ModernTemplate resumeData={{...resumeData, personalInfo: {}}} design={design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />
+    </div>
+  );
+};
+
+const ExecutiveTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) => {
+  const { personalInfo } = resumeData;
+  return (
+    <div className={fontClass}>
+      <motion.header variants={itemVariants} className={`text-center border-y-2 ${cMap.border} py-6 mb-8`}>
+        <h1 className="text-3xl font-light tracking-widest uppercase text-slate-900 mb-4">
+          {personalInfo.fullName || 'Your Name'}
+        </h1>
+        <div className={`flex justify-center flex-wrap gap-x-4 gap-y-1 text-xs uppercase tracking-wider font-bold ${cMap.text}`}>
+          {personalInfo.email && <span>{personalInfo.email}</span>}
+          {personalInfo.email && personalInfo.phone && <span>|</span>}
+          {personalInfo.phone && <span>{personalInfo.phone}</span>}
+          {personalInfo.phone && personalInfo.location && <span>|</span>}
+          {personalInfo.location && <span>{personalInfo.location}</span>}
+        </div>
+      </motion.header>
+      <ClassicTemplate resumeData={{...resumeData, personalInfo: {}}} design={design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />
+    </div>
+  );
+};
+
+
 const PreviewPane = ({ resumeData }) => {
   const containerVariants = {
     hidden: { opacity: 0, scale: 0.95, y: 20 },
@@ -381,12 +463,15 @@ const PreviewPane = ({ resumeData }) => {
       className="w-full max-w-[210mm] min-h-[297mm] bg-white shadow-2xl shadow-slate-200/50 shrink-0 mx-auto overflow-hidden"
       style={{
         boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.02)",
-        padding: resumeData.template === 'minimal' ? '0' : '48px'
+        padding: (resumeData.template === 'minimal' || resumeData.template === 'creative') ? '0' : '48px'
       }}
     >
       {resumeData.template === 'classic' && <ClassicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
       {resumeData.template === 'modern' && <ModernTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
       {resumeData.template === 'minimal' && <MinimalTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
+      {resumeData.template === 'professional' && <ProfessionalTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
+      {resumeData.template === 'creative' && <CreativeTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
+      {resumeData.template === 'executive' && <ExecutiveTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
     </motion.div>
   );
 };

@@ -12,7 +12,12 @@ const DesignPane = ({ resumeData, updateResumeData }) => {
   const fonts = [
     { id: 'sans', name: 'Modern Sans', class: 'font-sans' },
     { id: 'serif', name: 'Elegant Serif', class: 'font-serif' },
-    { id: 'mono', name: 'Tech Mono', class: 'font-mono' }
+    { id: 'inter', name: 'Inter', class: 'font-inter' },
+    { id: 'lato', name: 'Lato', class: 'font-lato' },
+    { id: 'montserrat', name: 'Montserrat', class: 'font-montserrat' },
+    { id: 'oswald', name: 'Oswald', class: 'font-oswald' },
+    { id: 'playfair', name: 'Playfair', class: 'font-playfair' },
+    { id: 'poppins', name: 'Poppins', class: 'font-poppins' }
   ];
 
   const colors = [
