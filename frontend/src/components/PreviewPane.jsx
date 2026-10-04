@@ -107,15 +107,20 @@ const ModernTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) =
 
   return (
     <div className={fontClass}>
-      <motion.header variants={itemVariants} className={`border-b-4 ${cMap.border} pb-8 mb-8`}>
-        <h1 className="text-5xl font-light tracking-tight text-slate-900 mb-2">
-          {personalInfo.fullName || 'Your Name'}
-        </h1>
-        <div className={`text-xl font-medium mb-5 tracking-wide ${cMap.lightText}`}>
-          {personalInfo.title || 'Professional Title'}
+      <motion.header variants={itemVariants} className={`border-b-4 ${cMap.border} pb-8 mb-8 flex justify-between items-end`}>
+        <div>
+          <h1 className="text-5xl font-light tracking-tight text-slate-900 mb-2">
+            {personalInfo.fullName || 'Your Name'}
+          </h1>
+          <div className={`text-xl font-medium mb-5 tracking-wide ${cMap.lightText}`}>
+            {personalInfo.title || 'Professional Title'}
+          </div>
         </div>
-        
-        <div className={`flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium ${cMap.bg} ${cMap.text} p-4 rounded-xl border border-current border-opacity-10`}>
+        {personalInfo.photo && (
+          <img src={personalInfo.photo} alt="Profile" className={`w-28 h-28 object-cover rounded-2xl border-2 ${cMap.border} mb-5 shrink-0`} />
+        )}
+      </motion.header>
+      <div className={`flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium ${cMap.bg} ${cMap.text} p-4 rounded-xl border border-current border-opacity-10 mb-8`}>
           <ContactItem icon={Mail} text={personalInfo.email} />
           <ContactItem icon={Phone} text={personalInfo.phone} />
           <ContactItem icon={MapPin} text={personalInfo.location} />
@@ -193,7 +198,10 @@ const ClassicTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) 
   
   return (
     <div className={fontClass}>
-      <motion.header variants={itemVariants} className={`text-center border-b-4 ${cMap.border} pb-8 mb-8`}>
+      <motion.header variants={itemVariants} className={`text-center border-b-4 ${cMap.border} pb-8 mb-8 flex flex-col items-center`}>
+        {personalInfo.photo && (
+          <img src={personalInfo.photo} alt="Profile" className={`w-24 h-24 object-cover rounded-full mb-4 border-2 ${cMap.border}`} />
+        )}
         <h1 className="text-5xl font-bold tracking-widest uppercase text-slate-900 mb-4">
           {personalInfo.fullName || 'Your Name'}
         </h1>
@@ -277,6 +285,9 @@ const MinimalTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) 
     <div className={`${fontClass} flex`}>
       {/* Sidebar Component */}
       <div className={`w-[32%] ${cMap.bg} p-8 shrink-0 min-h-full`}>
+        {personalInfo.photo && (
+          <motion.img variants={itemVariants} src={personalInfo.photo} alt="Profile" className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-lg mb-6" />
+        )}
         <motion.h1 variants={itemVariants} className={`text-4xl font-bold tracking-tight mb-2 ${cMap.text}`}>
           {personalInfo.fullName?.split(' ')[0] || 'Your'}<br/>
           {personalInfo.fullName?.split(' ').slice(1).join(' ') || 'Name'}
@@ -400,12 +411,17 @@ const ProfessionalTemplate = ({ resumeData, design, cMap, fontClass, itemVariant
   return (
     <div className={fontClass}>
       <motion.header variants={itemVariants} className={`border-t-[16px] ${cMap.border} pt-8 pb-6 mb-8 flex justify-between items-end`}>
-        <div>
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-1">
-            {personalInfo.fullName || 'Your Name'}
-          </h1>
-          <div className={`text-lg font-bold uppercase tracking-widest ${cMap.lightText}`}>
-            {personalInfo.title || 'Professional Title'}
+        <div className="flex items-center gap-6">
+          {personalInfo.photo && (
+            <img src={personalInfo.photo} alt="Profile" className={`w-24 h-24 object-cover rounded shadow-md shrink-0 border-2 ${cMap.border}`} />
+          )}
+          <div>
+            <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-1">
+              {personalInfo.fullName || 'Your Name'}
+            </h1>
+            <div className={`text-lg font-bold uppercase tracking-widest ${cMap.lightText}`}>
+              {personalInfo.title || 'Professional Title'}
+            </div>
           </div>
         </div>
         <div className="text-right text-sm font-medium text-slate-600 space-y-1">

@@ -56,6 +56,31 @@ const EditorPane = ({ activeTab, resumeData, updateResumeData }) => {
           <InputField label="Portfolio URL" name="portfolio" value={resumeData.personalInfo.portfolio} onChange={handlePersonalInfo} placeholder="e.g. myportfolio.com" />
           <InputField label="LinkedIn" name="linkedin" value={resumeData.personalInfo.linkedin} onChange={handlePersonalInfo} placeholder="e.g. linkedin.com/in/johndoe" />
           <InputField label="GitHub" name="github" value={resumeData.personalInfo.github} onChange={handlePersonalInfo} placeholder="e.g. github.com/johndoe" />
+          
+          <div className="flex flex-col gap-1.5 md:col-span-2">
+            <label className="text-[13px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wide">Profile Photo</label>
+            <div className="flex items-center gap-4">
+              {resumeData.personalInfo.photo && (
+                <div className="relative shrink-0">
+                  <img src={resumeData.personalInfo.photo} alt="Profile" className="w-16 h-16 object-cover rounded-full border-2 border-slate-200" />
+                  <button onClick={() => updateResumeData('personalInfo', { ...resumeData.personalInfo, photo: '' })} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 transition-colors">×</button>
+                </div>
+              )}
+              <input 
+                type="file" 
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onloadend = () => updateResumeData('personalInfo', { ...resumeData.personalInfo, photo: reader.result });
+                    reader.readAsDataURL(file);
+                  }
+                }}
+                className={`text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-semibold ${resumeData.personalInfo.photo ? 'file:bg-slate-100 file:text-slate-600' : 'file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100'} transition-colors cursor-pointer w-full`}
+              />
+            </div>
+          </div>
         </div>
       </div>
     );

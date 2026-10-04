@@ -4,10 +4,11 @@ import { useReactToPrint } from 'react-to-print';
 import EditorPane from '../components/EditorPane';
 import PreviewPane from '../components/PreviewPane';
 import DesignPane from '../components/DesignPane';
+import TemplateGallery from '../components/TemplateGallery';
 import { 
   FileText, Download, User, Briefcase, GraduationCap, 
   Settings, Cloud, Eye, Menu, Wrench, Home, LogOut,
-  Globe, BookOpen, Star, Folder, Palette
+  Globe, BookOpen, Star, Folder, Palette, LayoutTemplate
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ function Dashboard() {
       portfolio: 'myportfolio.com',
       linkedin: 'linkedin.com/in/johndoe',
       github: 'github.com/johndoe',
+      photo: '',
       title: 'Frontend Developer',
       summary: 'Passionate frontend developer with experience building modern web applications.'
     },
@@ -101,6 +103,7 @@ function Dashboard() {
     { id: 'certifications', label: 'Courses & Certifications', icon: BookOpen },
     { id: 'workshops', label: 'Workshops & Seminars', icon: Star },
     { id: 'projects', label: 'Academic Projects', icon: Folder },
+    { id: 'templates', label: 'Templates Gallery', icon: LayoutTemplate },
     { id: 'design', label: 'Design & Theme', icon: Palette },
   ];
 
@@ -181,7 +184,12 @@ function Dashboard() {
               transition={{ duration: 0.2 }}
               className="max-w-2xl mx-auto"
             >
-              {activeTab === 'design' ? (
+              {activeTab === 'templates' ? (
+                <TemplateGallery 
+                  resumeData={resumeData} 
+                  updateResumeData={updateResumeData} 
+                />
+              ) : activeTab === 'design' ? (
                 <DesignPane 
                   resumeData={resumeData} 
                   updateResumeData={updateResumeData} 
@@ -208,22 +216,6 @@ function Dashboard() {
             <h2 className="text-sm font-bold text-slate-700 dark:text-slate-200 tracking-wide">PREVIEW</h2>
           </div>
           <div className="flex items-center gap-3">
-            <select 
-              value={resumeData.template} 
-              onChange={(e) => updateResumeData('template', e.target.value)}
-              className="bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-2 font-medium"
-            >
-              <option value="modern">Modern Layout</option>
-              <option value="classic">Classic Layout</option>
-              <option value="minimal">Minimal Layout</option>
-              <option value="professional">Professional Layout</option>
-              <option value="creative">Creative Layout</option>
-              <option value="executive">Executive Layout</option>
-              <option value="compact">Compact Layout</option>
-              <option value="elegant">Elegant Layout</option>
-              <option value="bold">Bold Layout</option>
-              <option value="timeline">Timeline Layout</option>
-            </select>
             <button 
               onClick={handlePrint}
               className="flex items-center gap-2 bg-blue-600 dark:bg-blue-500 text-white px-5 py-2.5 rounded-lg font-semibold text-sm shadow-md shadow-blue-600/20 hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
