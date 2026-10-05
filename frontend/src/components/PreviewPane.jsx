@@ -128,8 +128,6 @@ const ModernTemplate = ({ resumeData, design, cMap, fontClass, itemVariants }) =
           <ContactItem icon={LinkedinIcon} text={personalInfo.linkedin} />
           <ContactItem icon={GithubIcon} text={personalInfo.github} />
         </div>
-      </motion.header>
-
       {personalInfo.summary && (
         <motion.section variants={itemVariants} layout className="mb-10">
           <SectionHeading title="Executive Summary" design={design} cMap={cMap} />
