@@ -124,6 +124,28 @@ const DesignPane = ({ resumeData, updateResumeData }) => {
         </div>
       </section>
 
+      {/* Font Size Section */}
+      <section className="space-y-4">
+        <div className="flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold mb-4">
+          <Type size={18} /> Font Size (Content)
+        </div>
+        <div className="flex bg-slate-100 dark:bg-slate-800 p-1.5 rounded-xl">
+          {['small', 'medium', 'large'].map((size) => (
+            <button
+              key={size}
+              onClick={() => updateDesign('fontSize', size)}
+              className={`flex-1 py-3 text-sm font-bold capitalize transition-all rounded-lg ${
+                (design.fontSize || 'medium') === size 
+                  ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm' 
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
+              }`}
+            >
+              <span className={size === 'small' ? 'text-xs' : size === 'large' ? 'text-base' : 'text-sm'}>Aa</span> {size}
+            </button>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 };
