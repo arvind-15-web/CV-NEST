@@ -548,15 +548,17 @@ const PreviewPane = ({ resumeData }) => {
   };
 
   const { cMap, fontClass } = getThemeStyles(resumeData.design || { font: 'sans', color: 'blue', headingStyle: 'solid' });
-  const fontSizeClass = resumeData.design?.fontSize === 'small' ? 'size-small' : resumeData.design?.fontSize === 'large' ? 'size-large' : '';
+  const fontSize = resumeData.design?.fontSize || 14;
+  const textScale = fontSize / 14;
 
   return (
     <motion.div 
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className={`w-full max-w-[210mm] min-h-[297mm] bg-white shadow-2xl shadow-slate-200/50 shrink-0 mx-auto overflow-hidden ${fontSizeClass}`}
+      className={`w-full max-w-[210mm] min-h-[297mm] bg-white shadow-2xl shadow-slate-200/50 shrink-0 mx-auto overflow-hidden dynamic-font-size`}
       style={{
+        '--text-scale': textScale,
         boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0,0,0,0.02)",
         padding: (resumeData.template === 'minimal' || resumeData.template === 'creative') ? '0' : '48px'
       }}

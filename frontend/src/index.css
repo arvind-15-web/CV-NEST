@@ -29,17 +29,14 @@ body {
 }
 
 /* Resume Font Size Scaling */
-.size-small { --text-scale: 0.85; }
-.size-large { --text-scale: 1.15; }
-
-:is(.size-small, .size-large) .text-\[13px\] { font-size: calc(13px * var(--text-scale)) !important; }
-:is(.size-small, .size-large) .text-\[14px\] { font-size: calc(14px * var(--text-scale)) !important; }
-:is(.size-small, .size-large) .text-\[15px\] { font-size: calc(15px * var(--text-scale)) !important; }
-:is(.size-small, .size-large) .text-\[16px\] { font-size: calc(16px * var(--text-scale)) !important; }
-:is(.size-small, .size-large) .text-\[17px\] { font-size: calc(17px * var(--text-scale)) !important; }
-:is(.size-small, .size-large) .text-xs { font-size: calc(0.75rem * var(--text-scale)) !important; }
-:is(.size-small, .size-large) .text-sm { font-size: calc(0.875rem * var(--text-scale)) !important; }
-:is(.size-small, .size-large) .text-base { font-size: calc(1rem * var(--text-scale)) !important; }
-:is(.size-small, .size-large) .text-lg { font-size: calc(1.125rem * var(--text-scale)) !important; }
-:is(.size-small, .size-large) .text-xl { font-size: calc(1.25rem * var(--text-scale)) !important; }
+.dynamic-font-size .text-\[13px\] { font-size: calc(13px * var(--text-scale, 1)) !important; }
+.dynamic-font-size .text-\[14px\] { font-size: calc(14px * var(--text-scale, 1)) !important; }
+.dynamic-font-size .text-\[15px\] { font-size: calc(15px * var(--text-scale, 1)) !important; }
+.dynamic-font-size .text-\[16px\] { font-size: calc(16px * var(--text-scale, 1)) !important; }
+.dynamic-font-size .text-\[17px\] { font-size: calc(17px * var(--text-scale, 1)) !important; }
+.dynamic-font-size .text-xs { font-size: calc(0.75rem * var(--text-scale, 1)) !important; }
+.dynamic-font-size .text-sm { font-size: calc(0.875rem * var(--text-scale, 1)) !important; }
+.dynamic-font-size .text-base { font-size: calc(1rem * var(--text-scale, 1)) !important; }
+.dynamic-font-size .text-lg { font-size: calc(1.125rem * var(--text-scale, 1)) !important; }
+.dynamic-font-size .text-xl { font-size: calc(1.25rem * var(--text-scale, 1)) !important; }
 

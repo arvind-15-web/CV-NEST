@@ -126,23 +126,29 @@ const DesignPane = ({ resumeData, updateResumeData }) => {
 
       {/* Font Size Section */}
       <section className="space-y-4">
-        <div className="flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold mb-4">
-          <Type size={18} /> Font Size (Content)
+        <div className="flex justify-between items-center mb-4">
+          <div className="flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold">
+            <Type size={18} /> Font Size (Content)
+          </div>
+          <span className="text-sm font-bold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-lg">
+            {design.fontSize || 14}px
+          </span>
         </div>
-        <div className="flex bg-slate-100 dark:bg-slate-800 p-1.5 rounded-xl">
-          {['small', 'medium', 'large'].map((size) => (
-            <button
-              key={size}
-              onClick={() => updateDesign('fontSize', size)}
-              className={`flex-1 py-3 text-sm font-bold capitalize transition-all rounded-lg ${
-                (design.fontSize || 'medium') === size 
-                  ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm' 
-                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
-              }`}
-            >
-              <span className={size === 'small' ? 'text-xs' : size === 'large' ? 'text-base' : 'text-sm'}>Aa</span> {size}
-            </button>
-          ))}
+        <div className="bg-slate-100 dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
+          <input
+            type="range"
+            min="10"
+            max="18"
+            step="1"
+            value={design.fontSize || 14}
+            onChange={(e) => updateDesign('fontSize', parseInt(e.target.value))}
+            className="w-full h-2 bg-slate-300 dark:bg-slate-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
+          />
+          <div className="flex justify-between text-xs font-semibold text-slate-400 mt-3">
+            <span>10px</span>
+            <span>14px (Standard)</span>
+            <span>18px</span>
+          </div>
         </div>
       </section>
 
