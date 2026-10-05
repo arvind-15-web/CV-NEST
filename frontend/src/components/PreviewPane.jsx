@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { DynamicTemplate } from './DynamicTemplate';
 import { Mail, Phone, MapPin, Link as LinkIcon } from 'lucide-react';
 
 const LinkedinIcon = ({ size = 14, className }) => (
@@ -14,7 +15,7 @@ const GithubIcon = ({ size = 14, className }) => (
   </svg>
 );
 
-const ContactItem = ({ icon: Icon, text }) => {
+export const ContactItem = ({ icon: Icon, text }) => {
   if (!text) return null;
   return (
     <div className="flex items-center gap-2">
@@ -24,7 +25,7 @@ const ContactItem = ({ icon: Icon, text }) => {
   );
 };
 
-const SectionHeading = ({ title, design, cMap, centered = false }) => {
+export const SectionHeading = ({ title, design, cMap, centered = false }) => {
   const { headingStyle } = design;
   
   if (headingStyle === 'minimal') {
@@ -49,7 +50,7 @@ const SectionHeading = ({ title, design, cMap, centered = false }) => {
   );
 };
 
-const ArraySection = ({ title, data, itemVariants, Component, design, cMap, centered = false }) => {
+export const ArraySection = ({ title, data, itemVariants, Component, design, cMap, centered = false }) => {
   if (!data || data.length === 0) return null;
   return (
     <motion.section variants={itemVariants} layout className="mb-10">
@@ -59,7 +60,7 @@ const ArraySection = ({ title, data, itemVariants, Component, design, cMap, cent
   );
 };
 
-const TagList = ({ data, cMap }) => (
+export const TagList = ({ data, cMap }) => (
   <div className="flex flex-wrap gap-2.5">
     {data.map((item) => (
       <motion.div layout key={item.id} className={`px-3 py-1.5 text-[14px] font-medium rounded-lg border ${cMap.bg} ${cMap.text} border-current border-opacity-20`}>
@@ -69,7 +70,7 @@ const TagList = ({ data, cMap }) => (
   </div>
 );
 
-const SimpleList = ({ data }) => (
+export const SimpleList = ({ data }) => (
   <ul className="list-disc list-inside space-y-1.5 text-[15px] text-slate-700">
     {data.map((item) => (
       <motion.li layout key={item.id}>{item.name}</motion.li>
@@ -569,6 +570,27 @@ const PreviewPane = ({ resumeData }) => {
       {resumeData.template === 'elegant' && <ElegantTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
       {resumeData.template === 'bold' && <BoldTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
       {resumeData.template === 'timeline' && <TimelineTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} />}
+      
+      {/* 20 Dynamic Templates */}
+      {resumeData.template === 'tech' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerBg: 'dark', headerAlign: 'left', sidebar: 'right', photoPos: 'left' }} />}
+      {resumeData.template === 'academic' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerAlign: 'center', sidebar: 'left', borderStyle: 'bottom' }} />}
+      {resumeData.template === 'startup' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ borderStyle: 'top', sidebar: 'right', photoPos: 'right' }} />}
+      {resumeData.template === 'designer' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerBg: 'solid', headerAlign: 'center', sidebar: 'none', photoPos: 'left' }} />}
+      {resumeData.template === 'engineer' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ borderStyle: 'bottom', sidebar: 'left', photoPos: 'right' }} />}
+      {resumeData.template === 'manager' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerBg: 'solid', headerAlign: 'left', sidebar: 'none', photoPos: 'right' }} />}
+      {resumeData.template === 'freelance' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerBg: 'dark', headerAlign: 'center', sidebar: 'none', photoPos: 'center' }} />}
+      {resumeData.template === 'analyst' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ borderStyle: 'bottom', sidebar: 'right' }} />}
+      {resumeData.template === 'consultant' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerBg: 'dark', headerAlign: 'center', sidebar: 'none', photoPos: 'center' }} />}
+      {resumeData.template === 'medical' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerAlign: 'center', sidebar: 'left' }} />}
+      {resumeData.template === 'legal' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ borderStyle: 'top', headerAlign: 'center', sidebar: 'right' }} />}
+      {resumeData.template === 'marketing' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerBg: 'dark', sidebar: 'left', photoPos: 'right' }} />}
+      {resumeData.template === 'sales' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerBg: 'solid', sidebar: 'right', photoPos: 'left' }} />}
+      {resumeData.template === 'developer' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerBg: 'dark', sidebar: 'none', photoPos: 'left' }} />}
+      {resumeData.template === 'finance' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ borderStyle: 'top', sidebar: 'none' }} />}
+      {resumeData.template === 'teacher' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerBg: 'solid', sidebar: 'left' }} />}
+      {resumeData.template === 'writer' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerAlign: 'center', sidebar: 'none', photoPos: 'right' }} />}
+      {resumeData.template === 'artist' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ headerBg: 'solid', sidebar: 'none', photoPos: 'left' }} />}
+      {resumeData.template === 'researcher' && <DynamicTemplate resumeData={resumeData} design={resumeData.design} cMap={cMap} fontClass={fontClass} itemVariants={itemVariants} config={{ borderStyle: 'bottom', sidebar: 'left' }} />}
     </motion.div>
   );
 };

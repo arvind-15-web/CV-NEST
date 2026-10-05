@@ -15,7 +15,26 @@ const TemplateGallery = ({ resumeData, updateResumeData }) => {
     { id: 'compact', name: 'Compact', type: 'Space Saver', desc: 'Very dense, inline information.' },
     { id: 'elegant', name: 'Elegant', type: 'Sophisticated', desc: 'Serif-heavy with double borders.' },
     { id: 'bold', name: 'Bold', type: 'Impactful', desc: 'Huge typography and side-borders.' },
-    { id: 'timeline', name: 'Timeline', type: 'Visual', desc: 'Vertical timeline connecting your history.' }
+    { id: 'timeline', name: 'Timeline', type: 'Visual', desc: 'Vertical timeline connecting your history.' },
+    { id: 'tech', name: 'Tech Start', type: 'Dynamic', desc: 'Dark solid header, two columns.' },
+    { id: 'academic', name: 'Academic CV', type: 'Dynamic', desc: 'Centered header, left sidebar.' },
+    { id: 'startup', name: 'Startup', type: 'Dynamic', desc: 'Thick colored top border, right sidebar.' },
+    { id: 'designer', name: 'Designer', type: 'Dynamic', desc: 'Colored background header, photo left.' },
+    { id: 'engineer', name: 'Engineer', type: 'Dynamic', desc: 'Photo right, bottom bordered header.' },
+    { id: 'manager', name: 'Manager', type: 'Dynamic', desc: 'Solid color header block, no sidebar.' },
+    { id: 'freelance', name: 'Freelancer', type: 'Dynamic', desc: 'Dark header, photo centered.' },
+    { id: 'analyst', name: 'Analyst', type: 'Dynamic', desc: 'Right sidebar, bottom border.' },
+    { id: 'consultant', name: 'Consultant', type: 'Dynamic', desc: 'Dark solid header, centered photo.' },
+    { id: 'medical', name: 'Medical', type: 'Dynamic', desc: 'Clean left sidebar, centered contact.' },
+    { id: 'legal', name: 'Legal', type: 'Dynamic', desc: 'Top border, centered, right sidebar.' },
+    { id: 'marketing', name: 'Marketing', type: 'Dynamic', desc: 'Dark header, left sidebar.' },
+    { id: 'sales', name: 'Sales', type: 'Dynamic', desc: 'Solid color header, right sidebar.' },
+    { id: 'developer', name: 'Developer', type: 'Dynamic', desc: 'Photo left, dark header block.' },
+    { id: 'finance', name: 'Finance', type: 'Dynamic', desc: 'Standard top border, no photo.' },
+    { id: 'teacher', name: 'Teacher', type: 'Dynamic', desc: 'Left sidebar, colorful.' },
+    { id: 'writer', name: 'Writer', type: 'Dynamic', desc: 'Centered, clean, photo right.' },
+    { id: 'artist', name: 'Artist', type: 'Dynamic', desc: 'Colored block header, photo left.' },
+    { id: 'researcher', name: 'Researcher', type: 'Dynamic', desc: 'Left sidebar, bottom border.' }
   ];
 
   return (
